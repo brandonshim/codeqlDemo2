@@ -1,4 +1,5 @@
 name: "CodeQL Advanced"
+
 on:
   push:
     branches: [ "main" ]
@@ -31,9 +32,10 @@ jobs:
         languages: ${{ matrix.language }}
         queries: +security-extended,security-and-quality
 
-    - name: Build Project (if needed)
+    - name: Manually Build Project (Ensure all C files are included)
       run: |
-        make || echo "Skipping manual build"
+        gcc -o vuln1 vuln1.c
+        gcc -o vuln2 vuln2.c || true # Allow failure if it's an isolated test case
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
