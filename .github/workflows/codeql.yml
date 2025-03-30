@@ -35,7 +35,7 @@ jobs:
     - name: Manually Build Project (Ensure all C files are included)
       run: |
         gcc -o vuln1 vuln1.c
-        gcc -o vuln2 vuln2.c || true # Allow failure if it's an isolated test case
+        gcc -o vuln3 vuln3.c || true # Allow failure if it's an isolated test case
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
